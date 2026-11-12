@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GACELA — Tienda de Ropa Urbana &amp; Minimalista</title>
+  <meta name="description"
+    content="GACELA — Moda urbana minimalista en blanco y negro. Catálogo exclusivo de prendas boxy, hoodies oversize, cargos y outerwear. Pedidos por WhatsApp 67992051." />
+
+  <!-- Tipografía estrictamente Sans-Serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:ital,wght@1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Barra Superior de Anuncios (estilo rome-store / ntf) -->
+  <div class="announcement-bar" role="region" aria-label="Anuncios de la tienda">
+    <div class="announcement-track">
+      <span>ENVIOS GRATIS A PARTIR DEL LOS 700.BS A TODA BOLIVIA</span>
+      <span class="dot" aria-hidden="true">•</span>
+      <span>ATENCIÓN DIRECTA WHATSAPP: 67992051</span>
+      <span class="dot" aria-hidden="true">•</span>
+      <span>ENVIOS GRATIS A PARTIR DEL LOS 700.BS A TODA BOLIVIA</span>
+      <span class="dot" aria-hidden="true">•</span>
+      <span>ATENCIÓN DIRECTA WHATSAPP: 67992051</span>
+      <span class="dot" aria-hidden="true">•</span>
+    </div>
+  </div>
+
+  <!-- Cabecera Principal -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner container">
+      <!-- Botón Menú Móvil -->
+      <button class="icon-btn mobile-menu-btn" id="mobileMenuToggle" aria-label="Abrir menú de navegación"
+        aria-expanded="false" aria-controls="mobileNavDrawer">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="square">
+          <line x1="3" y1="7" x2="21" y2="7"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="17" x2="21" y2="17"></line>
+        </svg>
+      </button>
+
+      <!-- Navegación Desktop -->
+      <nav class="desktop-nav" aria-label="Navegación principal">
+        <a href="#catalogo" class="nav-link">Catálogo</a>
+        <a href="#manifiesto" class="nav-link">Colección</a>
+        <a href="#ubicacion" class="nav-link">Ubicación</a>
+        <a href="#contacto" class="nav-link">Redes</a>
+      </nav>
+
+      <!-- Logotipo Central GACELA -->
+      <a href="#inicio" class="brand-logo" aria-label="GACELA Inicio">
+        <img src="assets/images/logo-gacela.svg" alt="GACELA" class="brand-wordmark-img" />
+      </a>
+
+      <!-- Utilidades Derecha -->
+      <div class="header-actions">
+        <button class="header-action-btn" id="searchToggleBtn" aria-label="Buscar prendas" aria-expanded="false"
+          aria-controls="searchBarPanel">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
+          </svg>
+          <span class="action-label">Buscar</span>
+        </button>
+
+        <a href="#ubicacion" class="header-action-btn hide-mobile" aria-label="Ver croquis de ubicación">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"></path>
+            <circle cx="12" cy="10" r="2.2"></circle>
+          </svg>
+          <span class="action-label">Tienda</span>
+        </a>
+
+        <button class="cart-trigger-btn" id="openCartBtn" aria-label="Abrir carrito de compras">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M6 7h12l1 13H5L6 7z"></path>
+            <path d="M9 7V6a3 3 0 0 1 6 0v1"></path>
+          </svg>
+          <span class="action-label">Carrito</span>
+          <span class="cart-badge" id="cartCountBadge">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Barra de Búsqueda Desplegable -->
+    <div class="search-panel" id="searchBarPanel" hidden>
+      <div class="container search-panel-inner">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
+        </svg>
+        <input type="search" id="catalogSearchInput" class="search-input"
+          placeholder="Buscar prenda (ej. boxy, hoodie, cargo, bomber, zero sleeve)..."
+          aria-label="Buscar prendas en el catálogo" />
+        <button class="btn-text" id="clearSearchBtn" type="button">Limpiar</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Menú Lateral Móvil -->
+  <div class="drawer-backdrop" id="mobileNavBackdrop" hidden></div>
+  <aside class="mobile-drawer" id="mobileNavDrawer" aria-hidden="true" aria-label="Menú móvil">
+    <div class="mobile-drawer-header">
+      <span class="brand-wordmark">GACELA</span>
+      <button class="icon-btn" id="closeMobileNavBtn" aria-label="Cerrar menú">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <line x1="5" y1="5" x2="19" y2="19"></line>
+          <line x1="19" y1="5" x2="5" y2="19"></line>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-nav-links">
+      <a href="#inicio" class="mobile-nav-link">Inicio</a>
+      <a href="#catalogo" class="mobile-nav-link">Catálogo (05 Prendas)</a>
+      <a href="#manifiesto" class="mobile-nav-link">Concepto &amp; Drop 01</a>
+      <a href="#ubicacion" class="mobile-nav-link">Croquis de Ubicación</a>
+      <a href="#contacto" class="mobile-nav-link">Redes &amp; WhatsApp</a>
+    </nav>
+    <div class="mobile-drawer-footer">
+      <a href="https://wa.me/59167992051?text=Hola%20GACELA%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20prendas."
+        target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-full">
+        WhatsApp Directo · 67992051
+      </a>
+    </div>
+  </aside>
+
+  <main id="inicio">
+    <!-- Sección Hero Editorial -->
+    <section class="hero-section">
+      <div class="hero-media">
+        <img src="https://i.pinimg.com/736x/c3/42/e9/c342e941f608762f7c3d34568c5c2a7c.jpg"
+          alt="Campaña editorial GACELA Drop 01 en blanco y negro" class="hero-img" />
+        <div class="hero-scrim" aria-hidden="true"></div>
+      </div>
+
+      <div class="container hero-content">
+        <div class="hero-eyebrow">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>COLECCIÓN CÁPSULA 01 — NEGRO ABSOLUTO</span>
+        </div>
+
+        <h1 class="hero-title">
+          SILUETA EN<br />
+          <span class="outline-text">SOMBRA PURA.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Diseño urbano minimalista en escala monocroma. Cortes boxy fit,
+          franela reactiva de alto gramaje y piezas esenciales pensadas para destacar en negro.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#catalogo" class="btn btn-primary">
+            <span>Explorar Catálogo</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+
+          <a href="https://wa.me/59167992051?text=Hola%20GACELA%2C%20vengo%20desde%20la%20web%20y%20quiero%20consultar%20por%20el%20Drop%2001."
+            target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              aria-hidden="true">
+              <path
+                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+              </path>
+            </svg>
+            <span>WhatsApp · 67992051</span>
+          </a>
+
+          <a href="#ubicacion" class="btn btn-ghost">
+            <span>Ver Croquis</span>
+          </a>
+        </div>
+
+        <div class="hero-specs">
+          <div class="spec-item">
+            <span class="spec-code">01 / TEJIDOS</span>
+            <span class="spec-value">Algodón 260–420 GSM</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-code">02 / ESTÉTICA</span>
+            <span class="spec-value">Monocromo Negro &amp; Blanco</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-code">03 / ATENCIÓN</span>
+            <span class="spec-value">Showroom &amp; Envío Nacional</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Catálogo de Ropa (5 Prendas de Ejemplo) -->
+    <section class="catalog-section" id="catalogo">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-heading-group">
+            <span class="section-kicker">DROP 01 / ARCHIVO SELECCIONADO</span>
+            <h2 class="section-title">CATÁLOGO DE PRENDAS</h2>
+          </div>
+          <p class="section-meta" id="catalogResultCount">Mostrando 5 de 5 prendas</p>
+        </div>
+
+        <!-- Barra de Filtros & Orden -->
+        <div class="catalog-toolbar">
+          <div class="filter-pills" role="tablist" aria-label="Filtrar por categoría">
+            <button class="filter-pill active" data-category="all" role="tab" aria-selected="true">
+              Todo (5)
+            </button>
+            <button class="filter-pill" data-category="Parte Superior" role="tab" aria-selected="false">
+              Parte Superior
+            </button>
+            <button class="filter-pill" data-category="Hoodies" role="tab" aria-selected="false">
+              Hoodies
+            </button>
+            <button class="filter-pill" data-category="Parte Inferior" role="tab" aria-selected="false">
+              Parte Inferior
+            </button>
+            <button class="filter-pill" data-category="Outerwear" role="tab" aria-selected="false">
+              Outerwear
+            </button>
+          </div>
+
+          <div class="sort-wrapper">
+            <label for="sortSelect" class="sort-label">Ordenar:</label>
+            <select id="sortSelect" class="sort-select" aria-label="Ordenar prendas">
+              <option value="featured">Destacados</option>
+              <option value="price-asc">Precio: menor a mayor</option>
+              <option value="price-desc">Precio: mayor a menor</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Grid de Productos (se renderiza dinámicamente desde app.js) -->
+        <div class="product-grid" id="productGrid"></div>
+
+        <!-- Estado vacío cuando la búsqueda no encuentra coincidencias -->
+        <div class="empty-catalog" id="emptyCatalogState" hidden>
+          <p>No encontramos prendas que coincidan con tu búsqueda.</p>
+          <button class="btn btn-outline" id="resetFiltersBtn" type="button">
+            Ver las 5 prendas disponibles
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Manifiesto Minimalista (inspirada en ntf.pe / rome-store) -->
+    <section class="manifesto-section" id="manifiesto">
+      <div class="container">
+        <div class="manifesto-grid">
+          <div class="manifesto-lead">
+            <span class="section-kicker">FILOSOFÍA GACELA</span>
+            <h2 class="manifesto-title">
+              MENOS RUIDO.<br />
+              MÁS PRESENCIA EN NEGRO.
+            </h2>
+            <p class="manifesto-text">
+              En <strong>GACELA</strong> diseñamos piezas urbanas atemporales donde el negro
+              es protagonista absoluto y el blanco define la estructura. Cada prenda combina
+              caída estructurada, gramajes pesados y terminaciones limpias para durar más allá
+              de la temporada.
+            </p>
+            <div class="manifesto-actions">
+              <button class="btn btn-outline" id="openSizeGuideBtn" type="button">
+                Guía de Tallas Boxy &amp; Oversize
+              </button>
+              <a href="https://wa.me/59167992051?text=Hola%20GACELA%2C%20necesito%20asesor%C3%ADa%20de%20tallas%20para%20mi%20pedido."
+                target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+                Asesoría por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="manifesto-pillars">
+            <article class="pillar-card">
+              <span class="pillar-num">01</span>
+              <h3>Cortes Urbanos</h3>
+              <p>Moldería boxy fit, hombros caídos y pantalones wide-leg inspirados en el streetwear contemporáneo.</p>
+            </article>
+            <article class="pillar-card">
+              <span class="pillar-num">02</span>
+              <h3>Alto Gramaje</h3>
+              <p>Algodón peinado y franela reactiva entre 260 y 420 GSM que mantienen su forma lavado tras lavado.</p>
+            </article>
+            <article class="pillar-card">
+              <span class="pillar-num">03</span>
+              <h3>Compra Directa</h3>
+              <p>Arma tu carrito en línea y finaliza en un clic por WhatsApp al <strong>67992051</strong> o visita
+                nuestro showroom.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Croquis de Ubicación Interactivo (Tarija, Bolivia) -->
+    <section class="location-section" id="ubicacion">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-heading-group">
+            <span class="section-kicker">TARIJA · BOLIVIA — ZONA CENTRAL</span>
+            <h2 class="section-title">CROQUIS DE UBICACIÓN</h2>
+          </div>
+          <span class="demo-tag">Plus Code: F789+C66 · Gacela vip</span>
+        </div>
+
+        <div class="location-layout">
+          <!-- Croquis SVG Minimalista en Blanco y Negro basado en mapa real de Tarija -->
+          <div class="croquis-card">
+            <div class="croquis-toolbar">
+              <div class="croquis-status">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span id="croquisActiveLabel">Gacela vip — Calle Colón, entre Ingavi y 15 de Abril (Tarija)</span>
+              </div>
+              <div class="croquis-controls">
+                <button class="croquis-ctrl-btn active" id="toggleRouteBtn" type="button"
+                  title="Mostrar/ocultar ruta sugerida">
+                  Ruta peatonal
+                </button>
+                <button class="croquis-ctrl-btn" id="zoomInMapBtn" type="button" aria-label="Acercar croquis">+</button>
+                <button class="croquis-ctrl-btn" id="zoomOutMapBtn" type="button" aria-label="Alejar croquis">−</button>
+                <button class="croquis-ctrl-btn" id="resetMapBtn" type="button"
+                  aria-label="Restablecer vista">Reset</button>
+              </div>
+            </div>
+
+            <div class="croquis-viewport" id="croquisViewport">
+              <svg id="croquisSvg" class="croquis-svg" viewBox="0 0 800 480" role="img"
+                aria-label="Croquis de ubicación real de Gacela vip en Calle Colón entre Ingavi y 15 de Abril, Tarija, Bolivia">
+                <defs>
+                  <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+                  </pattern>
+                </defs>
+
+                <!-- Fondo plano técnico -->
+                <rect width="800" height="480" fill="#070707" />
+                <rect width="800" height="480" fill="url(#gridPattern)" />
+
+                <!-- Manzanas urbanas de Tarija Centro -->
+                <g class="map-blocks" fill="#101010" stroke="rgba(255,255,255,0.14)" stroke-width="1.2">
+                  <!-- Fila norte (arriba de Bolívar) -->
+                  <rect x="24" y="12" width="82" height="36" rx="2" />
+                  <rect x="136" y="12" width="138" height="36" rx="2" />
+                  <rect x="306" y="12" width="138" height="36" rx="2" />
+                  <rect x="476" y="12" width="148" height="36" rx="2" />
+                  <rect x="656" y="12" width="124" height="36" rx="2" />
+
+                  <!-- Fila entre Bolívar e Ingavi -->
+                  <rect x="24" y="80" width="82" height="90" rx="2" />
+                  <rect x="136" y="80" width="138" height="90" rx="2" />
+                  <rect x="306" y="80" width="138" height="90" rx="2" />
+                  <rect x="476" y="80" width="148" height="90" rx="2" />
+                  <rect x="656" y="80" width="124" height="90" rx="2" />
+
+                  <!-- Fila entre Ingavi y 15 de Abril (Manzana de Gacela vip destacada) -->
+                  <rect x="24" y="200" width="82" height="104" rx="2" />
+                  <rect x="136" y="200" width="138" height="104" rx="2" />
+                  <rect x="306" y="200" width="138" height="104" rx="2" />
+                  <rect x="476" y="200" width="148" height="104" rx="2" stroke="rgba(255,255,255,0.42)"
+                    fill="#161616" />
+                  <rect x="656" y="200" width="124" height="104" rx="2" />
+
+                  <!-- Fila entre 15 de Abril y siguiente calle sur -->
+                  <rect x="24" y="336" width="82" height="86" rx="2" />
+                  <rect x="136" y="336" width="138" height="86" rx="2" />
+                  <rect x="306" y="336" width="138" height="86" rx="2" />
+                  <!-- Manzana Plazuela / Área verde (Colón y 15 de Abril) -->
+                  <rect x="476" y="336" width="148" height="86" rx="2" fill="#121212" stroke="rgba(255,255,255,0.22)" />
+                  <rect x="656" y="336" width="124" height="86" rx="2" />
+
+                  <!-- Fila inferior (hacia Rectorado UAJMS) -->
+                  <rect x="136" y="450" width="138" height="22" rx="2" />
+                  <rect x="306" y="450" width="138" height="22" rx="2" />
+                  <rect x="476" y="450" width="148" height="22" rx="2" />
+                </g>
+
+                <!-- Trazado en X de la Plazuela / Área verde (esquina Colón y 15 de Abril) -->
+                <g stroke="rgba(255,255,255,0.18)" stroke-width="1">
+                  <line x1="476" y1="336" x2="624" y2="422" />
+                  <line x1="624" y1="336" x2="476" y2="422" />
+                </g>
+
+                <!-- Calles Reales de Tarija Centro -->
+                <g class="map-streets">
+                  <!-- Horizontales: Bolívar, Ingavi, 15 de Abril, Sur -->
+                  <line x1="0" y1="64" x2="800" y2="64" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" />
+                  <line x1="0" y1="185" x2="800" y2="185" stroke="rgba(255,255,255,0.34)" stroke-width="2" />
+                  <line x1="0" y1="320" x2="800" y2="320" stroke="rgba(255,255,255,0.34)" stroke-width="2" />
+                  <line x1="0" y1="436" x2="800" y2="436" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" />
+
+                  <!-- Verticales: Sucre, Daniel Campos, Colón (Principal), Este -->
+                  <line x1="120" y1="0" x2="120" y2="480" stroke="rgba(255,255,255,0.20)" stroke-width="1.5" />
+                  <line x1="290" y1="0" x2="290" y2="480" stroke="rgba(255,255,255,0.26)" stroke-width="1.8" />
+                  <line x1="460" y1="0" x2="460" y2="480" stroke="rgba(255,255,255,0.48)" stroke-width="2.4" />
+                  <line x1="640" y1="0" x2="640" y2="480" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" />
+                </g>
+
+                <!-- Flechas de sentido vehicular real (según Google Maps) -->
+                <g fill="rgba(255,255,255,0.58)" font-family="Inter, sans-serif" font-size="11" font-weight="700">
+                  <!-- Ingavi hacia el oeste (←) -->
+                  <text x="205" y="189" text-anchor="middle">←</text>
+                  <text x="550" y="189" text-anchor="middle">←</text>
+                  <!-- 15 de Abril hacia el este (→) -->
+                  <text x="205" y="324" text-anchor="middle">→</text>
+                  <text x="550" y="324" text-anchor="middle">→</text>
+                  <!-- Daniel Campos hacia el sur (↓) -->
+                  <text x="290" y="135" text-anchor="middle">↓</text>
+                  <text x="290" y="390" text-anchor="middle">↓</text>
+                  <!-- Colón hacia el norte (↑) -->
+                  <text x="460" y="102" text-anchor="middle">↑</text>
+                  <text x="460" y="295" text-anchor="middle">↑</text>
+                </g>
+
+                <!-- Etiquetas de Calles Reales -->
+                <g class="map-street-labels" fill="rgba(255,255,255,0.72)"
+                  font-family="Plus Jakarta Sans, Inter, sans-serif" font-size="10.5" font-weight="700"
+                  letter-spacing="2">
+                  <text x="480" y="57">CALLE BOLÍVAR</text>
+                  <text x="784" y="177" text-anchor="end">CALLE INGAVI</text>
+                  <text x="784" y="313" text-anchor="end">CALLE 15 DE ABRIL</text>
+                  <text x="112" y="255" transform="rotate(-90 112 255)">CALLE SUCRE</text>
+                  <text x="282" y="292" transform="rotate(-90 282 292)">DANIEL CAMPOS</text>
+                  <text x="451" y="280" transform="rotate(-90 451 280)" fill="#ffffff">CALLE COLÓN</text>
+                </g>
+
+                <!-- Referencias reales visibles en la zona -->
+                <g fill="rgba(255,255,255,0.34)" font-family="Inter, sans-serif" font-size="8.8" font-weight="600"
+                  letter-spacing="0.8">
+                  <text x="205" y="54" text-anchor="middle">FAIR PLAY</text>
+                  <text x="588" y="292" text-anchor="middle">GOOD VIBES</text>
+                  <text x="718" y="356" text-anchor="middle">MANACO / MINI TOYS</text>
+                  <text x="550" y="465" text-anchor="middle">LA VACA FRÍA</text>
+                  <text x="375" y="465" text-anchor="middle">HACIA RECTORADO UAJMS</text>
+                </g>
+
+                <!-- Ruta Peatonal Animada (desde 15 de Abril / Colón hasta la puerta de Gacela vip) -->
+                <path id="pedestrianRoute" d="M 460 320 L 460 228 L 474 228" fill="none" stroke="#ffffff"
+                  stroke-width="2.5" stroke-dasharray="6 6" class="route-path" />
+
+                <!-- Marcadores Interactivos de Referencia Reales -->
+                <g class="map-pin ref-pin" data-pin-id="ucb"
+                  data-label='UCB "San Pablo" — Esquina Calle Colón e Ingavi (media cuadra al norte de Gacela vip)'
+                  tabindex="0" role="button" aria-label="Referencia Universidad Católica Boliviana San Pablo">
+                  <circle cx="496" cy="145" r="10" fill="#0B0B0B" stroke="#ffffff" stroke-width="1.8" />
+                  <text x="496" y="148.5" text-anchor="middle" fill="#ffffff" font-size="8.5" font-weight="700">U</text>
+                  <rect x="512" y="133" width="102" height="22" rx="2" fill="#090909" stroke="rgba(255,255,255,0.45)" />
+                  <text x="563" y="147.5" text-anchor="middle" fill="#ffffff" font-size="8.5" font-weight="600"
+                    letter-spacing="0.8">UCB SAN PABLO</text>
+                </g>
+
+                <g class="map-pin ref-pin" data-pin-id="ingavi"
+                  data-label="Esquina Calle Ingavi y Colón — A pocos pasos al norte de Gacela vip" tabindex="0"
+                  role="button" aria-label="Referencia Calle Ingavi y Colón">
+                  <circle cx="460" cy="185" r="8.5" fill="#0B0B0B" stroke="#ffffff" stroke-width="1.8" />
+                  <text x="460" y="188.5" text-anchor="middle" fill="#ffffff" font-size="8.5" font-weight="700">I</text>
+                  <text x="392" y="176" text-anchor="middle" fill="rgba(255,255,255,0.78)" font-size="8.8"
+                    font-weight="600">ESQ. INGAVI</text>
+                </g>
+
+                <g class="map-pin ref-pin" data-pin-id="abril"
+                  data-label="Plazuela / Esquina Calle 15 de Abril y Colón — A media cuadra al sur de Gacela vip"
+                  tabindex="0" role="button" aria-label="Referencia Calle 15 de Abril y Plazuela">
+                  <circle cx="550" cy="379" r="11" fill="#0B0B0B" stroke="#ffffff" stroke-width="1.8" />
+                  <text x="550" y="382.5" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="700">♣</text>
+                  <rect x="498" y="395" width="104" height="20" rx="2" fill="#090909" stroke="rgba(255,255,255,0.45)" />
+                  <text x="550" y="408.5" text-anchor="middle" fill="#ffffff" font-size="8.2" font-weight="600"
+                    letter-spacing="0.8">ESQ. 15 DE ABRIL</text>
+                </g>
+
+                <!-- Pin Principal: GACELA VIP (sobre Calle Colón entre Ingavi y 15 de Abril) -->
+                <g class="map-pin store-pin active" data-pin-id="gacela"
+                  data-label="Gacela vip — Calle Colón, entre Ingavi y 15 de Abril (Tarija, Bolivia)" tabindex="0"
+                  role="button" aria-label="Ubicación exacta Tienda Gacela vip">
+                  <circle cx="474" cy="228" r="24" fill="rgba(255,255,255,0.14)" class="pulse-ring" />
+                  <circle cx="474" cy="228" r="10" fill="#ffffff" stroke="#060606" stroke-width="2.5" />
+                  <rect x="490" y="215" width="122" height="26" rx="2" fill="#ffffff" />
+                  <text x="551" y="232" text-anchor="middle" fill="#060606" font-size="10.2" font-weight="800"
+                    letter-spacing="1.6">★ GACELA VIP</text>
+                </g>
+
+                <!-- Rosa de los Vientos / Norte + Escala -->
+                <g transform="translate(756, 36)" fill="#ffffff">
+                  <circle cx="0" cy="0" r="16" fill="#090909" stroke="rgba(255,255,255,0.3)" />
+                  <polygon points="0,-10 3.5,2 0,-1 -3.5,2" fill="#ffffff" />
+                  <text x="0" y="12" text-anchor="middle" font-size="7.5" font-weight="700">N</text>
+                </g>
+
+                <g transform="translate(664, 456)">
+                  <line x1="0" y1="0" x2="90" y2="0" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" />
+                  <line x1="0" y1="-4" x2="0" y2="4" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" />
+                  <line x1="90" y1="-4" x2="90" y2="4" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" />
+                  <text x="45" y="-6" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8.5"
+                    letter-spacing="1">1 cuadra aprox.</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="croquis-legend">
+              <button class="legend-chip active" data-focus-pin="gacela" type="button">
+                <span class="legend-dot solid"></span> Gacela vip (Colón)
+              </button>
+              <button class="legend-chip" data-focus-pin="ucb" type="button">
+                <span class="legend-dot ring"></span> UCB "San Pablo"
+              </button>
+              <button class="legend-chip" data-focus-pin="ingavi" type="button">
+                <span class="legend-dot ring"></span> Esq. Ingavi
+              </button>
+              <button class="legend-chip" data-focus-pin="abril" type="button">
+                <span class="legend-dot ring"></span> Esq. 15 de Abril
+              </button>
+            </div>
+          </div>
+
+          <!-- Detalles de Dirección Real y Botones de Ubicación -->
+          <div class="location-info-card">
+            <div>
+              <span class="section-kicker">VISÍTANOS EN TARIJA</span>
+              <h3 class="location-heading">Gacela vip — Centro de Tarija</h3>
+              <p class="location-note">
+                Ubicación real sobre la Calle Colón en el centro de Tarija. Toca cualquier referencia en el croquis para
+                ubicarte rápido o abre la ruta exacta en Google Maps.
+              </p>
+
+              <dl class="location-details">
+                <div class="detail-row">
+                  <dt>Dirección Exacta</dt>
+                  <dd>Calle Colón, entre Calle Ingavi y Calle 15 de Abril · Tarija, Bolivia</dd>
+                </div>
+                <div class="detail-row">
+                  <dt>Referencias</dt>
+                  <dd>A pasos de la Calle Ingavi (zona UCB "San Pablo") y Calle 15 de Abril (Plazuela / Manaco)</dd>
+                </div>
+                <div class="detail-row">
+                  <dt>Código Google Maps</dt>
+                  <dd>F789+C66 Gacela vip, Tarija</dd>
+                </div>
+                <div class="detail-row">
+                  <dt>WhatsApp Tienda</dt>
+                  <dd>+591 67992051</dd>
+                </div>
+                <div class="detail-row">
+                  <dt>Envíos</dt>
+                  <dd>Entregas en Tarija y envíos a toda Bolivia</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="location-buttons">
+              <a href="https://www.google.com/maps/search/?api=1&query=F789%2BC66+Gacela+vip%2C+Tarija" target="_blank"
+                rel="noopener noreferrer" class="btn btn-primary btn-full">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                  aria-hidden="true">
+                  <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"></path>
+                  <circle cx="12" cy="10" r="2.2"></circle>
+                </svg>
+                <span>Abrir en Google Maps (Gacela vip)</span>
+              </a>
+
+              <a href="https://wa.me/59167992051?text=Hola%20Gacela%20vip%2C%20estoy%20yendo%20a%20la%20tienda%20en%20Calle%20Col%C3%B3n%20(Tarija).%20%C2%BFMe%20confirman%20horarios%20o%20env%C3%ADan%20el%20pin%3F"
+                target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-full">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                  aria-hidden="true">
+                  <path
+                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                  </path>
+                </svg>
+                <span>Pedir Pin / Consultar por WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Botones de WhatsApp y Redes Sociales -->
+    <section class="social-contact-section" id="contacto">
+      <div class="container">
+        <div class="social-banner">
+          <div class="social-banner-copy">
+            <span class="section-kicker">CANALES DIRECTOS</span>
+            <h2 class="section-title">CONECTA CON GACELA</h2>
+            <p class="section-subtitle">
+              Resuelve dudas de tallas, coordina envíos inmediatos o sigue nuestros próximos drops monocromos.
+            </p>
+          </div>
+
+          <div class="social-buttons-grid">
+            <a href="https://wa.me/59167992051?text=Hola%20GACELA%2C%20quiero%20atenci%C3%B3n%20personalizada."
+              target="_blank" rel="noopener noreferrer" class="social-btn social-btn-featured">
+              <span class="social-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path
+                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                  </path>
+                </svg>
+              </span>
+              <span class="social-meta">
+                <strong>WhatsApp Oficial</strong>
+                <small>67992051 · Respuesta rápida</small>
+              </span>
+              <span class="social-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn">
+              <span class="social-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <circle cx="17.5" cy="6.5" r="1"></circle>
+                </svg>
+              </span>
+              <span class="social-meta">
+                <strong>Instagram</strong>
+                <small>@gacela.store</small>
+              </span>
+              <span class="social-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-btn">
+              <span class="social-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                </svg>
+              </span>
+              <span class="social-meta">
+                <strong>TikTok</strong>
+                <small>@gacela.wear</small>
+              </span>
+              <span class="social-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-btn">
+              <span class="social-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+              </span>
+              <span class="social-meta">
+                <strong>Facebook</strong>
+                <small>Gacela Clothing</small>
+              </span>
+              <span class="social-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de Página Minimalista -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo footer-logo">
+            <svg class="brand-emblem" width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path
+                d="M25 6L21 10.5M25 6L27 9.5M21 10.5L15 13L8.5 17.5L4 24M15 13L19.5 18.5L26 24M15 13L21 10.5L23.5 13.5"
+                stroke="currentColor" stroke-width="2" stroke-linecap="square" />
+              <circle cx="23.5" cy="9.5" r="1.2" fill="currentColor" />
+            </svg>
+            <span class="brand-wordmark">GACELA</span>
+          </div>
+          <p class="footer-desc">
+            Indumentaria urbana minimalista enfocada en siluetas contemporáneas, alto gramaje y contraste negro
+            absoluto.
+          </p>
+          <div class="footer-socials" aria-label="Redes sociales de Gacela">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-circle"
+              aria-label="Instagram">IG</a>
+            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-circle"
+              aria-label="TikTok">TT</a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-circle"
+              aria-label="Facebook">FB</a>
+            <a href="https://wa.me/59167992051" target="_blank" rel="noopener noreferrer" class="social-circle"
+              aria-label="WhatsApp 67992051">
+              WA
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="#catalogo">Catálogo (05 prendas)</a></li>
+            <li><a href="#manifiesto">Concepto Drop 01</a></li>
+            <li><a href="#ubicacion">Croquis de Ubicación</a></li>
+            <li><a href="#contacto">Contacto &amp; Redes</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Atención al Cliente</h4>
+          <ul>
+            <li><a href="https://wa.me/59167992051" target="_blank" rel="noopener noreferrer">WhatsApp: 67992051</a>
+            </li>
+            <li><button type="button" class="footer-link-btn" id="footerSizeGuideBtn">Guía de Tallas</button></li>
+            <li><button type="button" class="footer-link-btn" id="footerCartBtn">Ver Carrito</button></li>
+            <li><a href="#ubicacion">Cambios y Envíos</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Alertas de Nuevo Drop</h4>
+          <p class="newsletter-note">Recibe acceso anticipado a nuestros lanzamientos limitados.</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" id="newsletterEmail" placeholder="tu@correo.com"
+              aria-label="Correo electrónico para alertas" required />
+            <button type="submit" class="btn btn-primary">Unirse</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 GACELA STORE. Interfaz Demo Minimalista.</span>
+        <div class="payment-badges">
+          <span>QR / TRANSFERENCIA</span>
+          <span>TARJETA</span>
+          <span>CONTRA ENTREGA</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botón Flotante de WhatsApp (67992051) -->
+  <a href="https://wa.me/59167992051?text=Hola%20GACELA%2C%20quisiera%20consultar%20por%20sus%20prendas."
+    target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Chatear por WhatsApp al 67992051">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+      aria-hidden="true">
+      <path
+        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+      </path>
+    </svg>
+    <span class="floating-wa-text">WhatsApp · 67992051</span>
+  </a>
+
+  <!-- Carrito Lateral Desplegable (Slide-out Drawer) -->
+  <div class="drawer-backdrop" id="cartBackdrop" hidden></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Carrito de compras">
+    <div class="cart-header">
+      <div>
+        <span class="cart-kicker">TU SELECCIÓN</span>
+        <h2>Carrito (<span id="cartDrawerCount">0</span>)</h2>
+      </div>
+      <button class="icon-btn" id="closeCartBtn" aria-label="Cerrar carrito">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <line x1="5" y1="5" x2="19" y2="19"></line>
+          <line x1="19" y1="5" x2="5" y2="19"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Barra de Progreso Envío Gratis -->
+    <div class="shipping-progress-box">
+      <p id="shippingProgressText">Agrega $90.00 para obtener envío gratis</p>
+      <div class="progress-track">
+        <div class="progress-fill" id="shippingProgressBar" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <!-- Lista de Prendas en el Carrito -->
+    <div class="cart-items-body" id="cartItemsContainer"></div>
+
+    <!-- Pie del Carrito -->
+    <div class="cart-footer" id="cartFooter">
+      <form class="promo-form" id="promoCodeForm">
+        <input type="text" id="promoCodeInput" placeholder="Código promo (ej. GACELA10)"
+          aria-label="Código de descuento" />
+        <button type="submit" class="btn btn-outline">Aplicar</button>
+      </form>
+      <p class="promo-feedback" id="promoFeedback"></p>
+
+      <div class="cart-totals">
+        <div class="total-row">
+          <span>Subtotal</span>
+          <span id="cartSubtotalValue">$0.00</span>
+        </div>
+        <div class="total-row discount-row" id="cartDiscountRow" hidden>
+          <span>Descuento (GACELA10)</span>
+          <span id="cartDiscountValue">-$0.00</span>
+        </div>
+        <div class="total-row grand-total">
+          <span>Total estimado</span>
+          <span id="cartTotalValue">$0.00</span>
+        </div>
+      </div>
+
+      <div class="cart-checkout-actions">
+        <button type="button" class="btn btn-primary btn-full" id="checkoutWhatsAppBtn">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            aria-hidden="true">
+            <path
+              d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+            </path>
+          </svg>
+          <span>Pedir por WhatsApp · 67992051</span>
+        </button>
+
+        <button type="button" class="btn btn-outline btn-full" id="checkoutDemoBtn">
+          Simular Compra en Web
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Modal de Vista Rápida / Detalle de Prenda -->
+  <div class="modal-backdrop" id="modalBackdrop" hidden></div>
+  <div class="modal-dialog" id="quickViewModal" role="dialog" aria-modal="true" aria-labelledby="qvTitle" hidden>
+    <button class="modal-close-btn" id="closeQuickViewBtn" aria-label="Cerrar vista rápida">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <line x1="5" y1="5" x2="19" y2="19"></line>
+        <line x1="19" y1="5" x2="5" y2="19"></line>
+      </svg>
+    </button>
+    <div class="quickview-layout" id="quickViewBody"></div>
+  </div>
+
+  <!-- Modal Guía de Tallas y Confirmación Demo -->
+  <div class="modal-dialog modal-compact" id="infoModal" role="dialog" aria-modal="true"
+    aria-labelledby="infoModalTitle" hidden>
+    <button class="modal-close-btn" id="closeInfoModalBtn" aria-label="Cerrar ventana">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <line x1="5" y1="5" x2="19" y2="19"></line>
+        <line x1="19" y1="5" x2="5" y2="19"></line>
+      </svg>
+    </button>
+    <div id="infoModalBody"></div>
+  </div>
+
+  <!-- Notificación Toast -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
